@@ -1,0 +1,42 @@
+ion-header{
+    height: 60px;
+    transform: translateY(0px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute
+}
+.listNovels{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ion-toolbar{
+    height: 60px;
+    transform: translateY(0px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute
+}
+ion-card {
+    width: 40%;
+}
+
+ion-item{
+    margin-top: 15px;
+}
+
+ion-img{
+    width: 10%;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
