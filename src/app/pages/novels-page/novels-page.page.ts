@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { NovelDTO } from 'src/app/models/novel.dto';
 
 @Component({
   selector: 'app-novels-page',
@@ -8,19 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NovelsPagePage implements OnInit {
   search=false
-  obras=[{nome:"Reformation of the Deadbeat Noble ",src:"https://reaperscans.com.br/wp-content/uploads/2021/07/Reformation_of_the_Deadbeat_Noble_capa_reduzida_2.jpg"}]  
+  obras:NovelDTO[]
   tag:any
   scan: string="Novels"
+  source:any
   constructor(
     private route: ActivatedRoute, 
-    private router: Router
-  ) { this.route.queryParams.subscribe(params => {
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.scan = this.router.getCurrentNavigation().extras.state.scan.nome;
-      this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()
-
-    }
-  });
+    private router: Router,
+    public nav: NavController
+  ) { 
+    
+    
+    
 
 
   }
@@ -31,12 +32,24 @@ export class NovelsPagePage implements OnInit {
   
   navigateNovel(item){
     console.log(item)
-    this.router.navigate(['novel-page'])
+    this.nav.navigateForward('novel-page',{state:{item:item,source:this.source}})
 
 
   }
 
   ngOnInit() {
+    
+    this.route.queryParams.subscribe(params => {
+      
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.scan = this.router.getCurrentNavigation().extras.state.scan.nome;
+        console.log("veio")
+
+        this.source=this.router.getCurrentNavigation().extras.state.scan.source
+        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()
+
+      }
+    });
   }
 
 }

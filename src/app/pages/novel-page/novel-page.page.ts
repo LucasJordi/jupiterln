@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController, NavController } from '@ionic/angular';
 import { ReaderPage } from 'src/app/modals/reader/reader.page';
 
 @Component({
@@ -8,18 +9,38 @@ import { ReaderPage } from 'src/app/modals/reader/reader.page';
   styleUrls: ['./novel-page.page.scss'],
 })
 export class NovelPagePage implements OnInit {
+  obra
+  chapters
+  source
+  constructor(
+    public modalController: ModalController,
+    private route: ActivatedRoute, 
+    private router: Router,
+    public nav: NavController
+    ) { }
 
-  constructor(public modalController: ModalController) { }
-
-  async presentModal() {
+  async openReader(item) {
     const modal = await this.modalController.create({
       component: ReaderPage,
-      cssClass: 'my-custom-class'
+      cssClass: 'my-custom-class',
+      componentProps: {
+        "chapter":item,
+        "source":this.source,
+        "obra":this.obra
+      }
     });
     return await modal.present();
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {      
+      if (this.router.getCurrentNavigation().extras.state) {      
+        this.obra=this.router.getCurrentNavigation().extras.state.item
+        let caminho=this.router.getCurrentNavigation().extras.state.item.caminho
+        this.chapters=this.router.getCurrentNavigation().extras.state.source.getChapters(caminho)
+        this.source=this.router.getCurrentNavigation().extras.state.source
+      }
+    });
   }
 
 }

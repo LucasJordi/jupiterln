@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Gesture, GestureController, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-reader',
@@ -7,8 +7,11 @@ import { Gesture, GestureController, ModalController } from '@ionic/angular';
 })
 export class ReaderPage implements AfterViewInit {
   @ViewChild('leitor',{ read: ElementRef }) leitor: ElementRef;
+  @Input() chapter:any;
+  @Input() source:any;
+  @Input() obra:any;
   showBar: Boolean=false
-
+  data=[]
   constructor(
     private gestureCtrl: GestureController,
     private modalController: ModalController
@@ -44,6 +47,9 @@ export class ReaderPage implements AfterViewInit {
       }
 
     })
+    this.data=this.source.readNovel(this.chapter.link)
+    console.log(this.chapter)
+
    
   
     gesture.enable();

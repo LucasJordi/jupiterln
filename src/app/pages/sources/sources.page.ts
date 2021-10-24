@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { ReaperScanSource } from 'src/app/sources/reaperScan.source';
 
 @Component({
@@ -10,8 +11,8 @@ import { ReaperScanSource } from 'src/app/sources/reaperScan.source';
 export class SourcesPage implements OnInit {
 
   constructor(
-    private route:Router,
-    public reaperScanSource: ReaperScanSource
+    public reaperScanSource: ReaperScanSource,
+    public nav: NavController
     ) { }
   search=false
   scans=[
@@ -22,14 +23,9 @@ export class SourcesPage implements OnInit {
     this.search=!this.search
   }
   navigateNovels(item){
-    console.log(item)
-    let extras: NavigationExtras={
-      queryParams:{
-        scan:item,
-        
-      }
-    }
-    this.route.navigate(['novels-page'],extras)
+    
+    
+    this.nav.navigateForward('novels-page',{state:{scan:item}})
 
   }
 
