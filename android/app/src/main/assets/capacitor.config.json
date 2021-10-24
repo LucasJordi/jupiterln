@@ -1,9 +1,6 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "com.jupiter.reader",
 	"appName": "JupiterLn",
 	"webDir": "www",
-	"bundledWebRuntime": false,
-	"server": {
-		"url": "http://192.168.25.33:8100"
-	}
+	"bundledWebRuntime": false
 }

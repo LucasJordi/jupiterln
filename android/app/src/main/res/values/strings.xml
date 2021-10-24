@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">JupiterLn</string>
     <string name="title_activity_main">JupiterLn</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="package_name">com.jupiter.reader</string>
+    <string name="custom_url_scheme">com.jupiter.reader</string>
 </resources>

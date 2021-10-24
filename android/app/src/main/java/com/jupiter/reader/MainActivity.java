@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.jupiter.reader;
 
 import com.getcapacitor.BridgeActivity;
 
