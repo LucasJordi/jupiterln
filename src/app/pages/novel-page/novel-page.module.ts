@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NovelPagePageRoutingModule } from './novel-page-routing.module';
 
 import { NovelPagePage } from './novel-page.page';
+import { LoadingSpinnerComponentComponent } from 'src/app/components/loading-spinner-component/loading-spinner-component.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { NovelPagePage } from './novel-page.page';
     IonicModule,
     NovelPagePageRoutingModule
   ],
-  declarations: [NovelPagePage]
+  declarations: [NovelPagePage,LoadingSpinnerComponentComponent]
 })
 export class NovelPagePageModule {}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { BibliotecaPageRoutingModule } from './biblioteca-routing.module';
 
 import { BibliotecaPage } from './biblioteca.page';
+import { LoadingSpinnerComponentComponent } from 'src/app/components/loading-spinner-component/loading-spinner-component.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { BibliotecaPage } from './biblioteca.page';
     IonicModule,
     BibliotecaPageRoutingModule
   ],
-  declarations: [BibliotecaPage]
+  declarations: [BibliotecaPage,LoadingSpinnerComponentComponent]
 })
 export class BibliotecaPageModule {}

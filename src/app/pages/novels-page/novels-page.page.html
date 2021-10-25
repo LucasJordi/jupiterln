@@ -22,15 +22,14 @@
 </ion-header>
 
 <ion-content #content>
-  
-  <ion-list #content>
     
+    
+    <div #item style="height: 60px;">
 
-    <ion-item #item style="height: 60px;">
+    </div>
+    <app-loading-spinner-component *ngIf="loading"></app-loading-spinner-component>
 
-    </ion-item>
-
-    <ion-list class="listNovels" #content>    
+    <ion-list  class="listNovels" #content>    
     
       <ion-card #content *ngFor="let item of obras;index as i;" (click)="navigateNovel(item)" class="ion-activatable ripple-parent">
         <ion-card-header>
@@ -42,13 +41,9 @@
         </ion-card-content>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-card> 
-    </ion-list> 
-
-  
-    
-    
+    </ion-list>     
    
     
-  </ion-list>
+
   
 </ion-content>

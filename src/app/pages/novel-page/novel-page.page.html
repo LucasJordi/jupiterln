@@ -11,7 +11,16 @@
   <div style="height: 30px;"></div>
   <div class="novel-detail">
     <ion-img [src]="obra.src"></ion-img>
+    <ion-buttons slot="primary">
+      <ion-button (click)="addLibrary()">
+        <ion-icon slot="icon-only" *ngIf="!library"  name="star-outline"></ion-icon>
+        <ion-icon slot="icon-only" *ngIf="library" name="star"></ion-icon>
+        
+      </ion-button>
+      <p>Adicionar a Biblioteca</p>
+    </ion-buttons>
   </div>
+  <app-loading-spinner-component *ngIf="loading"></app-loading-spinner-component>
 
   <ion-list >
     <ion-item *ngFor="let item of chapters;index as i;" (click)="openReader(item)" class="ion-activatable ripple-parent">

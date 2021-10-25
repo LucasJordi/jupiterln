@@ -12,12 +12,17 @@ export class NovelPagePage implements OnInit {
   obra
   chapters
   source
+  loading: boolean=true
+  library: boolean=false
   constructor(
     public modalController: ModalController,
     private route: ActivatedRoute, 
     private router: Router,
     public nav: NavController
-    ) { }
+  ) { }
+  addLibrary(){
+    this.library=!this.library
+  }
 
   async openReader(item) {
     const modal = await this.modalController.create({
@@ -39,6 +44,7 @@ export class NovelPagePage implements OnInit {
         let caminho=this.router.getCurrentNavigation().extras.state.item.caminho
         this.chapters=this.router.getCurrentNavigation().extras.state.source.getChapters(caminho)
         this.source=this.router.getCurrentNavigation().extras.state.source
+        setTimeout(()=>this.loading=false,2000)
       }
     });
   }

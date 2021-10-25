@@ -14,6 +14,7 @@ export class NovelsPagePage implements OnInit {
   tag:any
   scan: string="Novels"
   source:any
+  loading=true
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
@@ -39,14 +40,15 @@ export class NovelsPagePage implements OnInit {
 
   ngOnInit() {
     
+    
     this.route.queryParams.subscribe(params => {
       
       if (this.router.getCurrentNavigation().extras.state) {
         this.scan = this.router.getCurrentNavigation().extras.state.scan.nome;
-        console.log("veio")
-
         this.source=this.router.getCurrentNavigation().extras.state.scan.source
-        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()
+        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()        
+        setTimeout(()=>this.loading=false,2000)
+        
 
       }
     });
