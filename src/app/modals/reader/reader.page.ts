@@ -29,10 +29,14 @@ export class ReaderPage implements AfterViewInit {
     this.modalController.dismiss({
       'dismissed': true
     });
+    this.showStatusBar()
   }
   
   async hideStatusBar () {
     await StatusBar.hide();
+  };
+  async showStatusBar () {
+    await StatusBar.show();
   };
   ngAfterViewInit() {
     this.hideStatusBar()

@@ -44,3 +44,5 @@ O desenvolvedor ainda é novato e deseja aprender e ter mais desafios!
 
 Se tem alguma crítica, sugestão ou quer ajudar o projeto então você é mais que bem vindo!
 
+contato: lucasjordisilva@gmail.com
+

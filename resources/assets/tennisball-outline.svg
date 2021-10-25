@@ -1,1 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Tennisball</title><circle cx="256" cy="256" r="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M461.43 271.44c-5.09.37-8.24.56-13.43.56-114.88 0-208-93.12-208-208 0-5.37.2-8.69.6-14M49.65 240.56S58.84 240 64 240c114.88 0 208 93.12 208 208 0 5.38-.61 14-.61 14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="ionicon"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="tennisball-outline.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.0410156"
+     inkscape:cx="222.8245"
+     inkscape:cy="279.14335"
+     inkscape:window-width="1366"
+     inkscape:window-height="708"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8"
+     inkscape:rotation="-1" />
+  <title
+     id="title2">Tennisball</title>
+  <circle
+     cx="256"
+     cy="256"
+     fill="none"
+     stroke="currentColor"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="32"
+     id="circle4"
+     r="208" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:12.5822;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939"
+     width="132.35597"
+     height="26.847343"
+     x="331.02249"
+     y="239.44257"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:12.9791;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-5"
+     width="140.83855"
+     height="26.847343"
+     x="316.63351"
+     y="278.879"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:12.9791;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-5-9"
+     width="140.83855"
+     height="26.847343"
+     x="52.999798"
+     y="316.7565"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:16.843;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-7"
+     width="237.17482"
+     height="26.847343"
+     x="81.34671"
+     y="117.04704"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:12.1517;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-7-5"
+     width="123.45312"
+     height="26.847343"
+     x="63.881378"
+     y="164.86024"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:11.9962;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-6"
+     width="120.31499"
+     height="26.847343"
+     x="72.027283"
+     y="357.91193"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.3632;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-6-6"
+     width="45.3279"
+     height="26.847343"
+     x="261.70438"
+     y="239.44257"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.3632;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-6-6-1"
+     width="45.3279"
+     height="26.847343"
+     x="207.83835"
+     y="316.7565"
+     ry="13.423672" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:8.99103;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect1939-7-5-3"
+     width="67.584595"
+     height="26.847343"
+     x="203.36113"
+     y="166.7113"
+     ry="13.423672" />
+  <ellipse
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:15;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path3178"
+     cx="349.4281"
+     cy="368.3446"
+     rx="19.527832"
+     ry="12.690384" />
+</svg>
