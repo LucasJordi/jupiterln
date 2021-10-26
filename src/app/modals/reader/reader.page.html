@@ -21,7 +21,7 @@
 
   
 <ion-content (click)="setShowBar()">
-  <app-loading-spinner-component *ngIf="loading"></app-loading-spinner-component>
+  
   <ion-list #leitor (click)="setShowBar()">
     <ion-item (click)="setShowBar()" *ngFor="let item of data;index as i;">{{item.conteudo}}</ion-item>
     

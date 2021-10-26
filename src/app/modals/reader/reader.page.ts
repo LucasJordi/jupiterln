@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Gesture, GestureController, ModalController } from '@ionic/angular';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-reader',
@@ -17,7 +18,8 @@ export class ReaderPage implements AfterViewInit {
   loading=true
   constructor(
     private gestureCtrl: GestureController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    public loadingService: LoadingService
   ) { }
   start=0
   end=0
@@ -51,7 +53,7 @@ export class ReaderPage implements AfterViewInit {
 
     })
     this.data=this.source.readNovel(this.chapter.link)
-    setTimeout(()=>this.loading=false,2000)  
+    this.loadingService.presentLoading(this.data) 
     gesture.enable();
   }
 

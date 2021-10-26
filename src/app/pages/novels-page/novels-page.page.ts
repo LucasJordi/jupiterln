@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NovelDTO } from 'src/app/models/novel.dto';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-novels-page',
@@ -18,7 +19,8 @@ export class NovelsPagePage implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    public nav: NavController
+    public nav: NavController,
+    public loadingService: LoadingService
   ) { 
     
     
@@ -37,6 +39,23 @@ export class NovelsPagePage implements OnInit {
 
 
   }
+  testLoading(data){
+    if(data.length>0){
+      this.loading=false
+
+    }else{
+      setTimeout(()=>{
+        if(data.length>0){
+          this.loading=false
+    
+        }
+      },2000)
+    }
+    
+  }
+  
+
+ 
 
   ngOnInit() {
     
@@ -46,8 +65,10 @@ export class NovelsPagePage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.scan = this.router.getCurrentNavigation().extras.state.scan.nome;
         this.source=this.router.getCurrentNavigation().extras.state.scan.source
-        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()        
-        setTimeout(()=>this.loading=false,2000)
+        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()
+                
+        this.loadingService.presentLoading(this.obras)
+        
         
 
       }
