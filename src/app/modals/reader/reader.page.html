@@ -20,7 +20,7 @@
 </ion-header>
 
   
-<ion-content (click)="setShowBar()">
+<ion-content (ionScroll)="scroll($event)" (click)="setShowBar()">
   
   <ion-list #leitor (click)="setShowBar()">
     <ion-item (click)="setShowBar()" *ngFor="let item of data;index as i;">{{item.conteudo}}</ion-item>

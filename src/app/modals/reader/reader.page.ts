@@ -40,6 +40,9 @@ export class ReaderPage implements AfterViewInit {
   async showStatusBar () {
     await StatusBar.show();
   };
+  scroll(event){
+    console.log(event)
+  }
   ngAfterViewInit() {
     this.hideStatusBar()
     const gesture:Gesture = this.gestureCtrl.create({
@@ -48,7 +51,7 @@ export class ReaderPage implements AfterViewInit {
       threshold: 0,
       onMove:()=>{
         this.showBar=!this.showBar
-        this.hideStatusBar()
+        //this.hideStatusBar()
       }
 
     })

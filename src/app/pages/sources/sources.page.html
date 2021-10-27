@@ -19,11 +19,11 @@
 
     </div>
          
-    <ion-item (click)="navigateNovels(item)" class="ion-activatable ripple-parent" *ngFor="let item of scans;index as i">
+    <ion-item (click)="navigateNovels(item)" button *ngFor="let item of scans;index as i">
       <ion-img [src]="item.logo"></ion-img>
       <ion-img></ion-img>      
       <ion-label>{{item.nome}}</ion-label>      
-      <ion-ripple-effect></ion-ripple-effect>
+      
     </ion-item>    
    
     

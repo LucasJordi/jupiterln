@@ -65,7 +65,7 @@ export class ReaperScanSource{
         .then(response=>{
             const document=this.parseDocument(response);
             document.querySelectorAll(".wp-manga-chapter").forEach(child=>{
-                capitulos.push({id:capitulos.length+1,nome:child.querySelector("a").innerText,link:child.querySelector("a").href.toString()})
+                capitulos.push({id:capitulos.length+1,nome:child.querySelector(".chapter-link").querySelector("a").innerText,link:child.querySelector("a").href.toString()})
 
             })
             const capa:HTMLElement=document.querySelector(".tab-summary")

@@ -18,6 +18,12 @@
   <ion-item style="height: 100px;">
 
   </ion-item>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <app-loading-spinner-component *ngIf="refresh" ></app-loading-spinner-component>
+  
+  
  
  
  

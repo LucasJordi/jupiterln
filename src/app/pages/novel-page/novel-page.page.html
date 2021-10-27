@@ -23,9 +23,8 @@
   
 
   <ion-list >
-    <ion-item *ngFor="let item of chapters;index as i;" (click)="openReader(item)" class="ion-activatable ripple-parent">
-      <ion-label>{{item.nome}}</ion-label>
-      <ion-ripple-effect></ion-ripple-effect>
+    <ion-item *ngFor="let item of chapters;index as i;" button (click)="openReader(item)" >
+      <ion-label>{{item.nome}}</ion-label>      
     </ion-item>
     
   </ion-list>
