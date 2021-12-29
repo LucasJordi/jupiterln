@@ -19,7 +19,7 @@
 <br>
 
 <p align="center">
-  <img src="./.github/readme-images/screenshots.png" align="center" />
+  <img src="./.github/readme/screens.png" align="center" />
 </p>
 
 ## Download
