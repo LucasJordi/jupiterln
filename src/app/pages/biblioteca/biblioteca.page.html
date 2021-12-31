@@ -1,28 +1,19 @@
-<ion-header>
-  <ion-toolbar #barTool>
-    <ion-title *ngIf="!search">{{'Biblioteca'}}</ion-title>
-    <ion-buttons slot="primary">      
-      <ion-button (click)="searchBarOpenClose()" *ngIf="!search">
-        <ion-icon  slot="icon-only" name="search"></ion-icon>       
-      </ion-button>
-      <ion-button (click)="searchBarOpenClose()" *ngIf="search">
-        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>       
-      </ion-button>     
-    </ion-buttons>
-    <ion-searchbar *ngIf="search" animated (ionCancel)="searchBarOpenClose()" showCancelButton="focus"></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
+<header-bar title="Bliblioteca" type="standard"></header-bar>
 
-<ion-content>
+<ion-content fullscreen="true">
   
-  <ion-item style="height: 100px;">
+  <div class="main-top">
 
-  </ion-item>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <app-loading-spinner-component *ngIf="refresh" ></app-loading-spinner-component>
+  </div>
+ 
+
+  <ion-list  class="listNovels" #content>    
   
+    
+    <novel-card #content *ngFor="let item of obras;index as i;" [item]="obras[i]" (activate)="navigateNovel(item)">
+
+    </novel-card>
+  </ion-list>     
   
  
  

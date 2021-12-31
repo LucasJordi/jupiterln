@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { StateData } from 'src/app/services/states/state.service';
 import { ReaperScanSource } from 'src/app/sources/reaperScan.source';
+import { SourcesService } from 'src/app/sources/sources.source';
 
 @Component({
   selector: 'app-sources',
@@ -12,13 +14,12 @@ export class SourcesPage implements OnInit {
 
   constructor(
     public reaperScanSource: ReaperScanSource,
-    public nav: NavController
+    public sourcesService:SourcesService,
+    public nav: NavController,
+    public stateService:StateData
     ) { }
   search=false
-  scans=[
-    {id:1,tag:"reaperscanbr",nome:"Reaper Scan Brasil",lingua:"Português brasileiro",link:"https://reaperscans.com.br/todas-as-series/",logo:"assets/scans/logo-reaper-2.png",source:this.reaperScanSource},
-    //{nome:"Saikai Scan",lingua:"Português brasileiro",link:"https://saikaiscan.com.br/series",logo:"assets/scans/saikai.png"}
-  ]
+  scans=this.sourcesService.SOURCES
   searchBarOpenClose(){
     this.search=!this.search
   }
@@ -26,7 +27,7 @@ export class SourcesPage implements OnInit {
     
     
     this.nav.navigateForward('novels-page',{state:{scan:item}})
-
+    this.stateService.putPlugin(item)
   }
 
   ngOnInit() {

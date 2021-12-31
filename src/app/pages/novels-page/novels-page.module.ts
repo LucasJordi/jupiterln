@@ -8,14 +8,16 @@ import { NovelsPagePageRoutingModule } from './novels-page-routing.module';
 
 import { NovelsPagePage } from './novels-page.page';
 import { LoadingSpinnerComponentComponent } from 'src/app/components/loading-spinner-component/loading-spinner-component.component';
+import { ComponentsModules } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NovelsPagePageRoutingModule
+    NovelsPagePageRoutingModule,
+    ComponentsModules
   ],
-  declarations: [NovelsPagePage,LoadingSpinnerComponentComponent]
+  declarations: [NovelsPagePage]
 })
 export class NovelsPagePageModule {}

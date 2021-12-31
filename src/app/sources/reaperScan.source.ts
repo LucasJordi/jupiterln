@@ -1,19 +1,34 @@
+import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Http } from '@capacitor-community/http';
-import { NovelDTO } from '../models/novel.dto';
+import { PATH } from '../config/path.config';
+import { Novel } from '../models/novel.dto';
+import { NovelChapter } from '../models/novelChapter.dto';
 
 @Injectable({
     providedIn: 'root', 
   })
 export class ReaperScanSource{
-    constructor() { }
-    novels: NovelDTO[]
-    url="https://reaperscans.com.br/todas-as-series/"
+    constructor(
+    ) { }
+    novels: Novel[]
+    path="https://reaperscans.com.br/todas-as-series/"
+    url=PATH(this.path)
     async getPage(url){
+        var formData = new FormData();
+        formData.append("action", "madara_load_more")
         const options = {
             url: url,            
         };        
+        const options2 = {
+            url: 'https://reaperscans.com.br/wp-admin/admin-ajax.php',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+            data:formData,
+          };
         const response = await Http.get(options);
+
+        
         return response.data
     }
     parseDocument(text){
@@ -23,36 +38,57 @@ export class ReaperScanSource{
     }
     card
     getAllNovels(){
-        this.novels=[]       
-        this.getPage(this.url)
+        var formData = new FormData();
+        formData.append("action", "madara_load_more")
+        // formData.append("page", "1")
+        // formData.append("template", "madara-core/content/content-archive")
+        // formData.append("vars[paged]", "1")
+        // formData.append("vars[orderby]", "meta_value_num")
+        // formData.append("vars[template]", "archive")
+        // formData.append("vars[sidebar]", "right")
+        // formData.append("vars[post_type]", "wp-manga")
+        // formData.append("vars[post_status]", "publish")
+        // formData.append("vars[meta_key]", "_latest_update")
+        // formData.append("vars[order]", "desc")
+        // formData.append("vars[meta_query][relation]", "OR")
+        // formData.append("vars[manga_archives_item_layout]", "big_thumbnail")
+        
+        
+        
+        this.novels=[{id:1,title:"Começo depois do fim",autor:"Turtle",cover:"https://reaperscans.com.br/wp-content/uploads/2021/07/41WUb2JBGqL-1-175x238.jpg",info:"Começo depois do fim",link:"https://reaperscans.com.br/obra/ocaf-novel/",status:"Em progresso"}]
+        try{
+            this.getPage(this.url)
         .then(response=>{
             const document=this.parseDocument(response);          
             document.querySelectorAll(".page-item-detail").forEach(child=>{
                 
-                if(child.querySelector(".manga-title-badges").innerHTML.indexOf("NOVEL")>-1){
+                // if(child.querySelector(".manga-title-badges").innerHTML.indexOf("NOVEL")>-1){
                     
-                    this.novels.push({id:this.novels.length+1,nome:child.querySelector("h3").innerText,src:child.querySelector("img").attributes['data-src'].nodeValue,caminho:child.querySelector("a").href.toString(),scan:"reaperscan"})
-                }                
+                    this.novels.push({id:this.novels.length+1,title:child.querySelector("h3").innerText,cover:child.querySelector("img").attributes['data-src'].nodeValue,link:child.querySelector("a").href.toString(),scan:"reaperscan",autor:"",info:"",status:""})
+                // }                
             })
             console.log(this.novels)
            
-            return this.novels   
+            // return this.novels   
 
         })
+        }catch(e){
+
+        }
         return this.novels
     }
     searchNovel(search:string){        
-        this.novels=[]
+        this.novels=[{id:1,title:"Começo depois do fim",autor:"Turtle",cover:"https://reaperscans.com.br/wp-content/uploads/2021/07/41WUb2JBGqL-1-175x238.jpg",info:"Começo depois do fim",link:"https://reaperscans.com.br/obra/ocaf-novel/",status:"Em progresso"}]
         this.getPage(this.url)
         .then(response=>{
             const document=this.parseDocument(response);          
             document.querySelectorAll(".page-item-detail").forEach(child=>{
-                if(child.querySelector(".manga-title-badges").innerHTML.indexOf("NOVEL")>-1){
-                    if(child.querySelector("h3").innerText.toLowerCase().indexOf(search.toLowerCase())>-1){
-                        this.novels.push({id:this.novels.length+1,nome:child.querySelector("h3").innerText,src:child.querySelector('img').src,caminho:child.querySelector("a").href.toString(),scan:"reaperscan"})
+                // if(child.querySelector(".manga-title-badges").innerHTML.indexOf("NOVEL")>-1){
+                //     if(child.querySelector("h3").innerText.toLowerCase().indexOf(search.toLowerCase())>-1){
+                //         this.novels.push({id:this.novels.length+1,nome:child.querySelector("h3").innerText,src:child.querySelector('img').src,caminho:child.querySelector("a").href.toString(),scan:"reaperscan"})
 
-                    }                   
-                }               
+                //     }                   
+                // }               
             })
             console.log(this.novels)
             return this.novels
@@ -74,19 +110,25 @@ export class ReaperScanSource{
         })
         return capitulos
     }
-    readNovel(capLink){
-        let capitulo=[]
-        this.getPage(capLink)
+    async readNovel(capLink:string){
+        let capitulo:string[]=[]
+        let cap:NovelChapter
+        await this.getPage(capLink)
         .then(response=>{
             const document=this.parseDocument(response);
+            
             document.querySelector(".reading-content").querySelectorAll("p").forEach(child=>{
-                capitulo.push({id:capitulo.length+1,conteudo:child.innerText})
+                capitulo.push(child.innerText)
             })
-            console.log(capitulo)
-            return capitulo
+            cap={id:capitulo.length+1,text:(document.querySelector(".text-left")as HTMLElement).innerText,content:capitulo}
+            
+            console.log((document.querySelector(".text-left") as HTMLElement).textContent)
+            ///return capitulo
+            
+            return cap
         })
 
-        return capitulo
+        return cap
     }
    
 }

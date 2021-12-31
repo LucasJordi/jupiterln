@@ -1,21 +1,8 @@
-<ion-header>
-  <ion-toolbar #barTool>
-    <ion-title *ngIf="!search">Fontes</ion-title>
-    <ion-buttons slot="primary">      
-      <ion-button (click)="searchBarOpenClose()" *ngIf="!search">
-        <ion-icon  slot="icon-only" name="search"></ion-icon>       
-      </ion-button>
-      <ion-button (click)="searchBarOpenClose()" *ngIf="search">
-        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>       
-      </ion-button>     
-    </ion-buttons>
-    <ion-searchbar *ngIf="search" animated (ionCancel)="searchBarOpenClose()" showCancelButton="focus"></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
+<header-bar title="Fontes"></header-bar>
 
 <ion-content>
   <ion-list>
-    <div style="height: 100px;">
+    <div class="main-top">
 
     </div>
          

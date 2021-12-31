@@ -1,0 +1,10 @@
+<ion-card (click)="click(item)" class="ion-activatable ripple-parent">
+  <ion-card-header>
+    <ion-img [src]="item.cover"></ion-img>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{item.title}}
+  </ion-card-content>
+  <ion-ripple-effect></ion-ripple-effect>
+</ion-card> 

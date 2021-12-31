@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AtualizationsPageRoutingModule } from './atualizations-routing.module';
 
 import { AtualizationsPage } from './atualizations.page';
+import { ComponentsModules } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AtualizationsPageRoutingModule
+    AtualizationsPageRoutingModule,
+    ComponentsModules
   ],
   declarations: [AtualizationsPage]
 })

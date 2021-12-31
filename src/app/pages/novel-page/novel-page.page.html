@@ -1,16 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{obra.nome}}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<header-bar [title]="obra.title" type="back"></header-bar>
 
 <ion-content>
-  <div style="height: 30px;"></div>
+  <div class="main-top">
+
+  </div>
   <div class="novel-detail">
-    <ion-img [src]="obra.src"></ion-img>
+    <ion-img [src]="obra.cover"></ion-img>
     <ion-buttons slot="primary">
       <ion-button (click)="addLibrary()">
         <ion-icon slot="icon-only" *ngIf="!library"  name="star-outline"></ion-icon>

@@ -1,46 +1,17 @@
-<ion-header #barTool>
-  <ion-toolbar #barTool>
-    <ion-title *ngIf="!search">{{scan}}</ion-title>
-    <ion-buttons slot="primary">      
-      <ion-button (click)="searchBarOpenClose()" *ngIf="!search">
-        <ion-icon  slot="icon-only" name="search"></ion-icon>
-        
-        
-      </ion-button>
-      <ion-button (click)="searchBarOpenClose()" *ngIf="search">
-        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
-        
-        
-      </ion-button>
-      
-    </ion-buttons>
-    <ion-searchbar *ngIf="search" animated (ionCancel)="searchBarOpenClose()" showCancelButton="focus"></ion-searchbar>
-    
-  </ion-toolbar>
-  
-  
-</ion-header>
+<header-bar [title]="scan" type="back"></header-bar>
 
 <ion-content #content>
     
     
-    <div #item style="height: 60px;">
-
-    </div>
+    
    
 
     <ion-list  class="listNovels" #content>    
     
-      <ion-card #content *ngFor="let item of obras;index as i;" (click)="navigateNovel(item)" class="ion-activatable ripple-parent">
-        <ion-card-header>
-          <ion-img [src]="item.src"></ion-img>
-        </ion-card-header>
       
-        <ion-card-content>
-          {{item.nome}}
-        </ion-card-content>
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-card> 
+      <novel-card #content *ngFor="let item of obras;index as i;" [item]="obras[i]" (activate)="navigateNovel(item)">
+
+      </novel-card>
     </ion-list>     
    
     

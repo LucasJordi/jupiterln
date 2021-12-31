@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Gesture, GestureController, ModalController } from '@ionic/angular';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { LoadingService } from 'src/app/services/loading.service';
+import { NovelChapter } from 'src/app/models/novelChapter.dto';
+import { Novel } from 'src/app/models/novel.dto';
 
 @Component({
   selector: 'app-reader',
@@ -13,8 +15,15 @@ export class ReaderPage implements AfterViewInit {
   @Input() chapter:any;
   @Input() source:any;
   @Input() obra:any;
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    console.log("foi")
+  //we'll do some stuff here when the window is scrolled
+  }
   showBar: Boolean=false
-  data=[]
+  data:NovelChapter
+  content:string[]
+  text:string
   loading=true
   constructor(
     private gestureCtrl: GestureController,
@@ -43,7 +52,14 @@ export class ReaderPage implements AfterViewInit {
   scroll(event){
     console.log(event)
   }
+  async getChap(){
+    this.data=await this.source.readNovel(this.chapter.link)
+    this.text=this.data.text
+    this.content=this.data.content
+    console.log(this.data)
+  }
   ngAfterViewInit() {
+    document.addEventListener("sroll", function(){ console.log("Hello World!"); });
     this.hideStatusBar()
     const gesture:Gesture = this.gestureCtrl.create({
       el:this.leitor.nativeElement,
@@ -55,8 +71,10 @@ export class ReaderPage implements AfterViewInit {
       }
 
     })
-    this.data=this.source.readNovel(this.chapter.link)
-    this.loadingService.presentLoading(this.data) 
+    
+    this.getChap()
+    //this.loadingService.presentLoading(this.data) 
+    
     gesture.enable();
   }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { NovelDTO } from 'src/app/models/novel.dto';
+import { Novel } from 'src/app/models/novel.dto';
 import { LoadingService } from 'src/app/services/loading.service';
+import { StateData } from 'src/app/services/states/state.service';
 
 @Component({
   selector: 'app-novels-page',
@@ -11,7 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class NovelsPagePage implements OnInit {
   search=false
-  obras:NovelDTO[]
+  obras:Novel[]
   tag:any
   scan: string="Novels"
   source:any
@@ -20,7 +21,12 @@ export class NovelsPagePage implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,
     public nav: NavController,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    public stateService:StateData
+    
+
+    
+
   ) { 
     
     
@@ -36,7 +42,9 @@ export class NovelsPagePage implements OnInit {
   navigateNovel(item){
     console.log(item)
     this.nav.navigateForward('novel-page',{state:{item:item,source:this.source}})
-
+    this.stateService.putSource(this.source)
+    this.stateService.putNovel(item)
+    
 
   }
   testLoading(data){
@@ -58,21 +66,13 @@ export class NovelsPagePage implements OnInit {
  
 
   ngOnInit() {
+    console.log(this.stateService.plugin)
+    this.scan =this.stateService.plugin.nome;
+    this.source=this.stateService.plugin.source
+    this.obras=this.stateService.plugin.source.getAllNovels()
+    //this.nav.back()
+    this.loadingService.presentLoading(this.obras)
     
-    
-    this.route.queryParams.subscribe(params => {
-      
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.scan = this.router.getCurrentNavigation().extras.state.scan.nome;
-        this.source=this.router.getCurrentNavigation().extras.state.scan.source
-        this.obras=this.router.getCurrentNavigation().extras.state.scan.source.getAllNovels()
-                
-        this.loadingService.presentLoading(this.obras)
-        
-        
-
-      }
-    });
   }
 
 }

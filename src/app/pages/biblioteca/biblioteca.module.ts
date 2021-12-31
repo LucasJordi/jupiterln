@@ -8,14 +8,16 @@ import { BibliotecaPageRoutingModule } from './biblioteca-routing.module';
 
 import { BibliotecaPage } from './biblioteca.page';
 import { LoadingSpinnerComponentComponent } from 'src/app/components/loading-spinner-component/loading-spinner-component.component';
+import { ComponentsModules } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BibliotecaPageRoutingModule
+    BibliotecaPageRoutingModule,
+    ComponentsModules
   ],
-  declarations: [BibliotecaPage,LoadingSpinnerComponentComponent]
+  declarations: [BibliotecaPage]
 })
 export class BibliotecaPageModule {}
