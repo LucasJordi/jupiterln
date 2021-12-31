@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Http } from '@capacitor-community/http';
@@ -12,24 +12,67 @@ import { NovelChapter } from '../models/novelChapter.dto';
 export class ReaperScanSource{
     constructor(
     ) { }
+    
     novels: Novel[]
     path="https://reaperscans.com.br/todas-as-series/"
     url=PATH(this.path)
     async getPage(url){
         var formData = new FormData();
-        formData.append("action", "madara_load_more")
+        
         const options = {
             url: url,            
         };        
         const options2 = {
             url: 'https://reaperscans.com.br/wp-admin/admin-ajax.php',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-            data:formData,
+            params:{action:"madara_load_more"},
+
           };
         const response = await Http.get(options);
-
+        //const response2=await Http.post(options2);
         
         return response.data
+    }
+
+    async getMore(pp){
+        const vars={post_type:""}
+        var formData = new FormData();
+        const body = new HttpParams()
+            .set('action', "madara_load_more")
+            .set('page', "1")
+            .set('template', "madara-core/content/content-archive")
+            .set('vars[post_type]', "wp-manga");
+        formData.append("action", "madara_load_more")
+        formData.append("page", "1")
+        formData.append("template", "madara-core/content/content-archive")
+        formData.append("vars[paged]", "1")
+        formData.append("vars[orderby]", "meta_value_num")
+        formData.append("vars[template]", "archive")
+        formData.append("vars[sidebar]", "right")
+        formData.append("vars[post_type]", "wp-manga")
+        formData.append("vars[post_status]", "publish")
+        formData.append("vars[meta_key]", "_latest_update")
+        formData.append("vars[order]", "desc")
+        formData.append("vars[meta_query][relation]", "OR")
+        formData.append("vars[manga_archives_item_layout]", "big_thumbnail")
+        console.log(formData.getAll)
+        const options = {
+            url: 'https://reaperscans.com.br/wp-admin/admin-ajax.php',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' ,"Origin":"https://reaperscans.com.br"},
+            params:{"action":"madara_load_more","page":pp,"template":"madara-core/content/content-archive","vars[post_type]":"wp-manga"},
+            ////data:body.toString()
+        };
+        const client = await fetch("http://192.168.25.33:8080/https://reaperscans.com.br/wp-admin/admin-ajax.php", {
+            method: 'post',
+            headers:{"Content-Type":"application/x-www-form-urlencoded"},
+            body: body.toString(),
+        }).then(resp=>{
+            return resp.text()
+        })
+        
+        ///const response=await Http.post(options);
+        
+        return client
     }
     parseDocument(text){
         const parser = new DOMParser();
@@ -37,37 +80,24 @@ export class ReaperScanSource{
 
     }
     card
-    getAllNovels(){
-        var formData = new FormData();
-        formData.append("action", "madara_load_more")
-        // formData.append("page", "1")
-        // formData.append("template", "madara-core/content/content-archive")
-        // formData.append("vars[paged]", "1")
-        // formData.append("vars[orderby]", "meta_value_num")
-        // formData.append("vars[template]", "archive")
-        // formData.append("vars[sidebar]", "right")
-        // formData.append("vars[post_type]", "wp-manga")
-        // formData.append("vars[post_status]", "publish")
-        // formData.append("vars[meta_key]", "_latest_update")
-        // formData.append("vars[order]", "desc")
-        // formData.append("vars[meta_query][relation]", "OR")
-        // formData.append("vars[manga_archives_item_layout]", "big_thumbnail")
+    async getAllNovels(){
         
         
         
-        this.novels=[{id:1,title:"Começo depois do fim",autor:"Turtle",cover:"https://reaperscans.com.br/wp-content/uploads/2021/07/41WUb2JBGqL-1-175x238.jpg",info:"Começo depois do fim",link:"https://reaperscans.com.br/obra/ocaf-novel/",status:"Em progresso"}]
+        this.novels=[]
         try{
-            this.getPage(this.url)
-        .then(response=>{
-            const document=this.parseDocument(response);          
-            document.querySelectorAll(".page-item-detail").forEach(child=>{
+            
+            await this.getPage(this.url)
+        .then( response=>{  
+            const document=this.parseDocument(response);        
+             document.querySelectorAll(".page-item-detail").forEach(child=>{
                 
                 // if(child.querySelector(".manga-title-badges").innerHTML.indexOf("NOVEL")>-1){
                     
                     this.novels.push({id:this.novels.length+1,title:child.querySelector("h3").innerText,cover:child.querySelector("img").attributes['data-src'].nodeValue,link:child.querySelector("a").href.toString(),scan:"reaperscan",autor:"",info:"",status:""})
                 // }                
             })
-            console.log(this.novels)
+            
            
             // return this.novels   
 

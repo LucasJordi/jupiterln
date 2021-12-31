@@ -63,15 +63,18 @@ export class NovelsPagePage implements OnInit {
   }
   
 
- 
+  async bringData(){
+     this.obras=await this.stateService.plugin.source.getAllNovels()
+     this.loadingService.presentLoading(this.obras)
+  }
 
   ngOnInit() {
     console.log(this.stateService.plugin)
     this.scan =this.stateService.plugin.nome;
     this.source=this.stateService.plugin.source
-    this.obras=this.stateService.plugin.source.getAllNovels()
+    this.bringData()
     //this.nav.back()
-    this.loadingService.presentLoading(this.obras)
+    
     
   }
 
